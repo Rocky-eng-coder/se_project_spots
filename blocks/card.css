@@ -3,6 +3,21 @@
   width: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 6px;
+}
+
+.card__title {
+  font-family: poppins, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  max-width: 353px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 40px;
 }
 
 .card__content {
@@ -18,6 +33,11 @@
   border: none;
   background-color: transparent;
   opacity: 40%;
+}
+
+.card__like-btn:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {
