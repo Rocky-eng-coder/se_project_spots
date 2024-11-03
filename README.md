@@ -35,6 +35,6 @@ https://drive.google.com/file/d/1Evcpxpw8954J8toTdjDnJR-BbGXUgwjJ/view?usp=shari
 This webpage is deployed to GitHub pages.
 
 -Deployment Link:
-https://rocky-eng-coder.github.io/se_project_spots/index.html
+https://rocky-eng-coder.github.io/se_project_spots/
 
 I hope you enjoy this project!
