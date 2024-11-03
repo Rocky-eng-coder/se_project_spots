@@ -8,7 +8,11 @@
 
 **Intro**
 
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones. The technologies and techniques used in this project include the Grid layout, flex, HTML, CSS, FIGMA, VS Code, Github, and Git Bash or the terminal in VS Code.
+This is a responsive layout project using the design application Figma to create a look for our elements that will be compatible on multiple devices regardless of size.
+
+## Tech Stack
+
+The technologies and techniques used in this project include the Grid layout, flex, HTML, CSS, FIGMA, VS Code, Github, and Git Bash or the terminal in VS Code.
 
 **Figma**
 
@@ -23,9 +27,13 @@ This project is made so all the elements are displayed correctly on popular scre
 ![alt text](images/tubanur-dogan-from-pexels.jpg)
 ![alt text](images/van-anh-nguyen-from-pexels.jpg)
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
-
 **Sprint 3 Project Video**
 https://drive.google.com/file/d/1Evcpxpw8954J8toTdjDnJR-BbGXUgwjJ/view?usp=sharing
 
-Good luck and have fun!
+## Deployment
+
+This webpage is deployed to GitHub pages.
+
+-Deployment Link:
+
+I hope you enjoy this project!
