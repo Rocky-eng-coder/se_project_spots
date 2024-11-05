@@ -8,7 +8,7 @@
   margin-right: 20px;
   height: 190px;
   width: 190px;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .profile__column {
@@ -29,6 +29,7 @@
   -webkit-box-orient: vertical;
   max-width: 420px;
   font-family: poppins, Arial, Helvetica, sans-serif;
+  color: #212121;
 }
 
 .profile__description {
@@ -73,7 +74,7 @@
   color: #fcf5e5;
   background-color: #212121;
   height: 52px;
-  margin-top: 138px;
+  margin-top: auto;
   padding: 18px 24px 18px;
   border: none;
   display: flex;
@@ -81,7 +82,6 @@
 }
 
 .profile__add-btn:hover {
-  background-color: #212121;
   opacity: 80%;
   transition-duration: 0.3s;
   cursor: pointer;
@@ -94,7 +94,6 @@
     align-items: center;
     text-align: center;
     padding-top: 20px;
-    max-width: 288px;
   }
 
   .profile__avatar {
