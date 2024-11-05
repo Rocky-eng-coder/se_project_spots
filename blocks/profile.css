@@ -44,6 +44,9 @@
   max-width: 420px;
   color: #212121;
   opacity: 70%;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
 }
 
 .profile__edit-btn {
@@ -122,5 +125,8 @@
     width: 100%;
     max-width: 288px;
     justify-content: center;
+  }
+  .profile__edit-btn {
+    align-self: center;
   }
 }
