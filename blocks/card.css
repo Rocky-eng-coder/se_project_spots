@@ -27,8 +27,14 @@
   margin-top: 12px;
 }
 
+.card__footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
 .card__like-btn {
-  background-image: url(../images/heart\ icon.svg);
+  background-image: url(../images/heart-icon.svg);
   width: 23px;
   height: 20px;
   border: none;

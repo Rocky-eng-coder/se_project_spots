@@ -36,6 +36,12 @@
   justify-content: center;
   opacity: 40%;
   border: none;
+  background: none;
+}
+
+.modal__close-btn:hover {
+  border: 2px solid rgba(33, 33, 33, 1);
+  cursor: pointer;
 }
 
 .modal__title {
@@ -65,6 +71,11 @@
   border: 1px solid rgba(33, 33, 33, 0.4);
 }
 
+.modal__input:hover {
+  cursor: pointer;
+  border: 1px solid rgba(33, 33, 33, 1);
+}
+
 .modal__submit-btn {
   width: 156px;
   padding: 18px 0;
@@ -76,6 +87,7 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 1;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {
