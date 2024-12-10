@@ -47,6 +47,26 @@
   cursor: pointer;
 }
 
+.card__like-btn_liked {
+  background-image: url(../images/Liked\ Heart\ Icon.svg);
+  opacity: 1;
+}
+
+.card__like-btn_liked:hover {
+  background-image: url(../images/Liked\ Hover.svg);
+}
+
+.card__delete-btn {
+  position: absolute;
+  display: block;
+  background-color: transparent;
+  border: transparent;
+  margin-left: 365px;
+  margin-bottom: 371px;
+  padding-top: 9px;
+  padding-right: 10px;
+}
+
 @media screen and (max-width: 627px) {
   .card__image {
     height: 288px;
