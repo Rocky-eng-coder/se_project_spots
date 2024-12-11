@@ -26,6 +26,34 @@
   position: relative;
 }
 
+.modal__close_type_preview {
+  background-image: url("../images/White\ Close\ Icon.svg");
+  top: 0;
+  right: -12.5px;
+  height: 40px;
+  width: 40px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+}
+
+.modal__image {
+  max-width: 80vw;
+  max-height: 80vh;
+  border-radius: 8px;
+}
+
+.modal__caption {
+  background-color: rgba(33, 33, 33, 1);
+  color: rgba(255, 255, 255, 1);
+  border-radius: 8px;
+  width: 135px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal__close-btn {
   position: absolute;
   top: 32px;

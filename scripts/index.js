@@ -23,8 +23,11 @@ const initialCards = [
     name: "Mountain house",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
+  {
+    name: "Golden Gate Bridge",
+    link: " https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
 ];
-
 //Profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const profileAddButton = document.querySelector(".profile__add-btn");
@@ -46,7 +49,12 @@ const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 
-// Card related elements
+// select the modal
+const previewModal = document.querySelector("#preview-modal");
+// select other necessary elements// Card related elements
+const previewModalImageEl = previewModal.querySelector(".modal__image");
+const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
+
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 
@@ -60,6 +68,7 @@ function getCardElement(data) {
   const cardLikeBtn = cardElement.querySelector(".card__like-btn");
 
   //TODO - Select the delete button
+  const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
 
   cardNameEl.textContent = data.name;
   cardImageEl.src = data.link;
@@ -69,8 +78,22 @@ function getCardElement(data) {
     cardLikeBtn.classList.toggle("card__like-btn_liked");
   });
 
+  cardImageEl.addEventListener("click", () => {
+    openModal(previewModal);
+  });
+
+  previewModal.textContent = data.name;
+  previewModalImageEl.src = data.link;
+  previewModalCaptionEl.alt = data.name;
+  // add the src
+  // add the text content
+
   //set the listener on the delete button
   // The handler should remove the card from the Dom
+
+  cardDeleteBtn.addEventListener("click", (evt) => {
+    evt.target.closest(".card").remove();
+  });
 
   return cardElement;
 }

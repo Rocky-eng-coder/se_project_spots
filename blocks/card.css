@@ -40,6 +40,7 @@
   border: none;
   background-color: transparent;
   opacity: 40%;
+  background-repeat: no-repeat;
 }
 
 .card__like-btn:hover {
@@ -61,10 +62,18 @@
   display: block;
   background-color: transparent;
   border: transparent;
-  margin-left: 365px;
-  margin-bottom: 371px;
+  height: 32px;
+  width: 32px;
+  margin-left: 371px;
+  margin-top: 10px;
   padding-top: 9px;
   padding-right: 10px;
+  background-repeat: no-repeat;
+  background-image: url(../images/Delete\ Icon.svg);
+}
+
+.card__delete-btn:hover {
+  background-image: url(../images/Delete\ Icon\ Hover.svg);
 }
 
 @media screen and (max-width: 627px) {
