@@ -25,7 +25,7 @@ const initialCards = [
   },
   {
     name: "Golden Gate Bridge",
-    link: " https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
   },
 ];
 //Profile elements
@@ -54,6 +54,9 @@ const previewModal = document.querySelector("#preview-modal");
 // select other necessary elements// Card related elements
 const previewModalImageEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
+const previewModalDeleteBtn = previewModal.querySelector(
+  ".modal__close_type_preview"
+);
 
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
@@ -80,11 +83,21 @@ function getCardElement(data) {
 
   cardImageEl.addEventListener("click", () => {
     openModal(previewModal);
+    previewModalImageEl.alt = data.name;
+    previewModalImageEl.src = data.link;
+    previewModalCaptionEl.textContent = data.name;
   });
 
-  previewModal.textContent = data.name;
+  previewModalDeleteBtn.addEventListener("click", () => {
+    closeModal(previewModal);
+    previewModalImageEl.alt = data.name;
+    previewModalImageEl.src = data.link;
+    previewModalCaptionEl.textContent = data.name;
+  });
+
+  previewModalImageEl.alt = data.name;
   previewModalImageEl.src = data.link;
-  previewModalCaptionEl.alt = data.name;
+  previewModalCaptionEl.textContent = data.name;
   // add the src
   // add the text content
 
