@@ -90,9 +90,6 @@ function getCardElement(data) {
 
   previewModalDeleteBtn.addEventListener("click", () => {
     closeModal(previewModal);
-    previewModalImageEl.alt = data.name;
-    previewModalImageEl.src = data.link;
-    previewModalCaptionEl.textContent = data.name;
   });
 
   previewModalImageEl.alt = data.name;
