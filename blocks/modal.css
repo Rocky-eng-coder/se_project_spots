@@ -35,7 +35,7 @@
 .modal__close_type_preview {
   background-image: url("../images/White-Close-Icon.svg");
   top: 0;
-  right: -12.5px;
+  right: -45.5px;
   height: 40px;
   width: 40px;
   background-color: transparent;
@@ -62,7 +62,6 @@
   height: 32px;
   font-weight: 500px;
   font-family: poppins, Arial, Helvetica, sans-serif;
-  padding: 4px, 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -160,5 +159,35 @@
   }
   .modal__submit-btn {
     width: 100%;
+  }
+  .modal__close_type_preview {
+    background-image: url("../images/White-Close-Icon.svg");
+    top: 41px;
+    right: 16px;
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+  }
+
+  .modal__caption {
+    background-color: rgba(33, 33, 33, 1);
+    color: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    width: 111px;
+    height: 27px;
+    font-weight: 500px;
+    font-family: poppins, Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    size: 16px;
+  }
+
+  .modal__image {
+    max-width: 80vw;
+    max-height: 80vh;
+    border-radius: 8px;
   }
 }
