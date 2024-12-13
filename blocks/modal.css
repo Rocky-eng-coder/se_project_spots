@@ -27,7 +27,9 @@
 }
 
 .modal__content_type_preview {
-  position: absolute;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal__close_type_preview {
@@ -38,6 +40,7 @@
   width: 40px;
   background-color: transparent;
   border: none;
+  position: absolute;
 }
 
 .modal__close_type_preview:hover {
