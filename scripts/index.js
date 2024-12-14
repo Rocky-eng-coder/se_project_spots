@@ -55,7 +55,7 @@ const previewModal = document.querySelector("#preview-modal");
 const previewModalImageEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 const previewModalDeleteBtn = previewModal.querySelector(
-  ".modal__close_type_preview"
+  ".modal__close-btn_preview"
 );
 
 const cardTemplate = document.querySelector("#card-template");
@@ -92,17 +92,14 @@ function getCardElement(data) {
     closeModal(previewModal);
   });
 
-  previewModalImageEl.alt = data.name;
-  previewModalImageEl.src = data.link;
-  previewModalCaptionEl.textContent = data.name;
   // add the src
   // add the text content
 
   //set the listener on the delete button
   // The handler should remove the card from the Dom
 
-  cardDeleteBtn.addEventListener("click", (evt) => {
-    evt.target.closest(".card").remove();
+  cardDeleteBtn.addEventListener("click", () => {
+    cardElement.remove();
   });
 
   return cardElement;
@@ -131,7 +128,9 @@ function handleAddCardSubmit(evt) {
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
   const cardEl = getCardElement(inputValues);
   cardsList.prepend(cardEl);
+
   closeModal(cardModal);
+  evt.target.reset();
 }
 
 profileEditButton.addEventListener("click", () => {
