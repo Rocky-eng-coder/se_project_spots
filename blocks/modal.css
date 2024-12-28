@@ -85,6 +85,12 @@
   border: 1px solid rgba(33, 33, 33, 0.4);
 }
 
+.modal__error {
+  display: block;
+  color: red;
+  margin-top: 8px 0 0;
+}
+
 .modal__input:hover {
   cursor: pointer;
   border: 1px solid rgba(33, 33, 33, 1);
