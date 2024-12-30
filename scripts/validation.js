@@ -7,19 +7,19 @@ const settings = {
   errorClass: "modal__error_visible",
 };
 
-const showInputError = (formEl, inputEl, errorMsg) => {
+const showInputError = (formEl, inputEl, errorMsg, config) => {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
   errorMsgEl.textContent = errorMsg;
   inputEl.classList.add("modal__input_type_error");
 };
 
-const hideInputError = (formEl, inputEl) => {
+const hideInputError = (formEl, inputEl, config) => {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
   errorMsgEl.textContent = "";
   inputEl.classList.remove("modal__input_type_error");
 };
 
-const checkInputValidity = (formEl, inputEl) => {
+const checkInputValidity = (formEl, inputEl, config) => {
   if (!inputEl.validity.valid) {
     showInputError(formEl, inputEl, inputEl.validationMessage);
   } else {
@@ -27,13 +27,13 @@ const checkInputValidity = (formEl, inputEl) => {
   }
 };
 
-const hasInvalidInput = (inputList) => {
+const hasInvalidInput = (inputList, config) => {
   return inputList.some((input) => {
     return !input.validity.valid;
   });
 };
 
-const toggleButtonState = (inputList, buttonEl) => {
+const toggleButtonState = (inputList, buttonEl, config) => {
   if (hasInvalidInput(inputList)) {
     disableButton(buttonEl);
   } else {
@@ -50,7 +50,7 @@ const disableButton = (buttonEl, config) => {
   //TODO - Don't forget the CSS
 };
 
-const resetValidation = (formEl, inputList) => {
+const resetValidation = (formEl, inputList, config) => {
   inputList.forEach((input) => {
     hideInputError(formEl, input);
   });
