@@ -85,15 +85,19 @@
   border: 1px solid rgba(33, 33, 33, 0.4);
 }
 
+.modal__input:hover {
+  cursor: pointer;
+  border: 1px solid rgba(33, 33, 33, 1);
+}
+
+.modal__input_type_error {
+  border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
 .modal__error {
   display: block;
   color: red;
   margin-top: 8px 0 0;
-}
-
-.modal__input:hover {
-  cursor: pointer;
-  border: 1px solid rgba(33, 33, 33, 1);
 }
 
 .modal__submit-btn {
@@ -109,6 +113,13 @@
   line-height: 1;
   cursor: pointer;
 }
+
+.modal__submit-btn-disabled {
+  background-color: rgba(33, 33, 33, 1);
+  opacity: 0.5;
+  color: rgba(252, 245, 229, 1);
+}
+
 .modal__content_type_preview {
   position: relative;
   display: flex;
@@ -169,9 +180,21 @@
   .modal__label {
     margin-bottom: 24px;
   }
+
+  .modal__input_type_error {
+    border: 1px solid rgba(255, 0, 0, 0.6);
+  }
+
   .modal__submit-btn {
     width: 100%;
   }
+
+  .modal__submit-btn-disabled {
+    background-color: rgba(33, 33, 33, 1);
+    opacity: 0.5;
+    color: rgba(252, 245, 229, 1);
+  }
+
   .modal__close-btn_preview {
     background-image: url("../images/White-Close-Icon.svg");
     right: 0;
