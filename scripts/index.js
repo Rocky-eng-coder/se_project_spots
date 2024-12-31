@@ -108,11 +108,16 @@ function getCardElement(data) {
   return cardElement;
 }
 
+function handleEscapeKey(evt) {
+  closeModal();
+}
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscapeKey);
 }
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscapeKey);
 }
 
 function handleEditFormSubmit(evt) {

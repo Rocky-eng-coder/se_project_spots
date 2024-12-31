@@ -75,7 +75,7 @@ const setEventListeners = (formEl, config) => {
 const enableValidation = (config) => {
   console.log(config.formSelector);
   const formList = document.querySelectorAll(config.formSelector);
-  formList.forEach((formEl) => {
+  formList.forEach((formEl, config) => {
     setEventListeners(formEl, config);
   });
 };
