@@ -50,9 +50,9 @@ const disableButton = (buttonEl, config) => {
   //TODO - Don't forget the CSS
 };
 
-const resetValidation = (formEl, inputList) => {
+const resetValidation = (formEl, inputList, config) => {
   inputList.forEach((input) => {
-    hideInputError(formEl, input);
+    hideInputError(formEl, input, config);
   });
 };
 
