@@ -61,6 +61,8 @@ const previewModalDeleteBtn = previewModal.querySelector(
   ".modal__close-btn_preview"
 );
 
+const previewModalErrorMsg = previewModal.querySelector(".modal__error");
+
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 
