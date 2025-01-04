@@ -110,19 +110,34 @@ function getCardElement(data) {
   return cardElement;
 }
 
-function handleEscapeKey(event) {
-  if (event.key === "Escape") {
-    closeModal();
-  }
-}
+// Add code for clicking overlay
+
+const modals = document.querySelectorAll(".modal");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  modal.addEventListener("click", handleOverlayClick);
   document.addEventListener("keydown", handleEscapeKey);
 }
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  modal.removeEventListener("click", handleOverlayClick);
   document.removeEventListener("keydown", handleEscapeKey);
+}
+
+// Add code for leaving modal using ESC key
+
+function handleOverlayClick(evt) {
+  if (evt.target.classList.contains("modal_opened")) {
+    closeModal(evt.target);
+  }
+}
+
+function handleEscapeKey(event) {
+  if (event.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    closeModal(openedModal);
+  }
 }
 
 function handleEditFormSubmit(evt) {
