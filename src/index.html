@@ -9,19 +9,22 @@
       name="keywords"
       content=" HTML, CSS, FIGMA, SOCIAL MEDIA, PICTURES, GRID, GRID LAYOUT, DESIGN, RESPONSIVE LAYOUT"
     />
-    <link rel="stylesheet" href="./pages/index.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <title>Spots</title>
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.svg" alt="Spots logo" class="header__logo" />
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="Spots logo"
+          class="header__logo"
+        />
       </header>
       <main class="content">
         <section class="profile page__section">
           <img
-            src="./images/avatar.jpg"
+            src="<%=require('./images/avatar.jpg')%>"
             alt="Photo of a woman wearing a hat smiling"
             class="profile__avatar"
           />
@@ -29,13 +32,15 @@
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
             <button type="button" class="profile__edit-btn">
-              <img src="./images/Edit-Icon.svg" alt="Photo of edit icon" />Edit
-              Profile
+              <img
+                src="<%=require('./images/Edit-Icon.svg')%>"
+                alt="Photo of edit icon"
+              />Edit Profile
             </button>
           </div>
           <button type="button" class="profile__add-btn">
             <img
-              src="./images/new-post-icon.svg"
+              src="<%=require('./images/new-post-icon.svg')%>"
               alt="Photo of new post icon"
             />New Post
           </button>
@@ -169,7 +174,5 @@
         </div>
       </div>
     </div>
-    <script defer src="./scripts/index.js"></script>
-    <script defer src="./scripts/validation.js"></script>
   </body>
 </html>
