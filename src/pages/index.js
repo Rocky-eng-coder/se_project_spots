@@ -5,6 +5,7 @@ import {
   resetValidation,
   disableButton,
 } from "../scripts/validation.js";
+import Api from "../utils/Api.js";
 
 const initialCards = [
   {
@@ -36,6 +37,29 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
   },
 ];
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "26a66bc9-8fc9-40b5-980e-7373cd063117",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getInitialCards()
+  .then((cards) => {
+    cards.forEach((item) => {
+      const cardEl = getCardElement(item);
+      cardsList.append(cardEl);
+    });
+  })
+  .catch(console.error);
+
+api.getAppInfo().then((cards) => {
+  console.log(cards);
+});
+
 //Profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const profileAddButton = document.querySelector(".profile__add-btn");
@@ -197,10 +221,5 @@ cardForm.addEventListener("submit", handleAddCardSubmit);
 //  const cardElement = getCardElement(initialCards[i]);
 // cardsList.prepend(cardElement);
 //}
-
-initialCards.forEach((item) => {
-  const cardEl = getCardElement(item);
-  cardsList.append(cardEl);
-});
 
 enableValidation(settings);
