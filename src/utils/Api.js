@@ -1,17 +1,44 @@
 class Api {
-  constructor(options) {
-    // constructor body
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
+  }
+
+  // TODO create another method called get user info
+
+  getAppInfo() {
+    // TODO Call getuserinfo in this array
+    return Promise.all([this.getInitialCards()]);
   }
 
   getInitialCards() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
-      headers: {
-        authorization: "26a66bc9-8fc9-40b5-980e-7373cd063117",
-      },
-    }).then((res) => res.json());
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      Promise.reject(`Error: ${res.status}`);
+    });
   }
 
-  // other methods for working with the API
+  editUserInfo({ name, about }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      // Send the data in the body as a JSON string.
+      body: JSON.stringify({
+        name,
+        about,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      Promise.reject(`Error: ${res.status}`);
+    });
+    // handle the response
+  }
 }
 
 export default Api;

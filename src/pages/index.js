@@ -46,19 +46,20 @@ const api = new Api({
   },
 });
 
+// Destructure the second item in the callback of the .then()
 api
-  .getInitialCards()
-  .then((cards) => {
+  .getAppInfo()
+  .then(([cards]) => {
     cards.forEach((item) => {
       const cardEl = getCardElement(item);
       cardsList.append(cardEl);
     });
+
+    //Handle the user's information
+    // - set the src of the avatar image
+    // - set the textcontent of both the text elements
   })
   .catch(console.error);
-
-api.getAppInfo().then((cards) => {
-  console.log(cards);
-});
 
 //Profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
@@ -172,9 +173,18 @@ function handleEscapeKey(event) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = editModalNameInput.value;
-  profileDescription.textContent = editModalDescriptionInput.value;
-  closeModal(editModal);
+  api
+    .editUserInfo({
+      name: editModalNameInput.value,
+      about: editModalDescriptionInput.value,
+    })
+    .then((data) => {
+      // Todo - Use data argument instead of the input values
+      profileName.textContent = editModalNameInput.value;
+      profileDescription.textContent = editModalDescriptionInput.value;
+      closeModal(editModal);
+    })
+    .catch(console.error);
 }
 
 function handleAddCardSubmit(evt) {
