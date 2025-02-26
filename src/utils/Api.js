@@ -22,6 +22,8 @@ class Api {
     });
   }
 
+  // TODO - implement Post/cards- creating a card, go to index.js to see how we did the edit user information //
+
   editUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
@@ -53,7 +55,19 @@ class Api {
       }
       Promise.reject(`Error: ${res.status}`);
     });
-    // handle the response
+    // handle the response //
+  }
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      Promise.reject(`Error: ${res.status}`);
+    });
+    // handle the response //
   }
 }
 

@@ -91,6 +91,10 @@ const avatarSubmitBtn = avatarModal.querySelector(".modal__submit-btn");
 const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
+// Delete form Elements
+const deleteModal = document.querySelector("#delete-modal");
+const deleteForm = deleteModal.querySelector(".modal__form");
+
 // select the modal
 const previewModal = document.querySelector("#preview-modal");
 // select other necessary elements// Card related elements
@@ -102,8 +106,12 @@ const previewModalDeleteBtn = previewModal.querySelector(
 
 const previewModalErrorMsg = previewModal.querySelector(".modal__error");
 
+// CARD RELATED ELEMENTS //
+
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
+
+let selectedCard, selectedCardId;
 
 function getCardElement(data) {
   const cardElement = cardTemplate.content
@@ -142,9 +150,9 @@ function getCardElement(data) {
   //set the listener on the delete button
   // The handler should remove the card from the Dom
 
-  cardDeleteBtn.addEventListener("click", () => {
-    cardElement.remove();
-  });
+  cardDeleteBtn.addEventListener("click", (evt) =>
+    handleDeleteCard(cardElement, data)
+  );
 
   return cardElement;
 }
@@ -224,6 +232,20 @@ function handleAvatarSubmit(evt) {
     .catch(console.error);
 }
 
+function handleDeleteSubmit(evt) {
+  evt.preventDefault();
+  api
+    .deleteCard()
+    .then(() => {})
+    .catch(console.error);
+}
+
+function handleDeleteCard(cardElement, data) {
+  selectedCard = cardElement;
+  selectedCardId = data;
+  openModal(deleteModal);
+}
+
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
@@ -256,6 +278,8 @@ avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
+
+deleteForm.addEventListener("submit", handleDeleteSubmit);
 
 // for (let i = 0; i < initialCards.length; i++) {
 //  const cardElement = getCardElement(initialCards[i]);
