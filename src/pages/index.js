@@ -235,7 +235,7 @@ function handleAvatarSubmit(evt) {
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
   api
-    .deleteCard()
+    .deleteCard(selectedCardId)
     .then(() => {})
     .catch(console.error);
 }
