@@ -242,7 +242,7 @@ function handleDeleteSubmit(evt) {
 
 function handleDeleteCard(cardElement, data) {
   selectedCard = cardElement;
-  selectedCardId = data;
+  selectedCardId = data._id;
   openModal(deleteModal);
 }
 

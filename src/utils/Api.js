@@ -59,7 +59,7 @@ class Api {
   }
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
-      method: "PATCH",
+      method: "DELETE",
       headers: this._headers,
     }).then((res) => {
       if (res.ok) {
