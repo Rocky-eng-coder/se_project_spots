@@ -23,6 +23,21 @@ class Api {
   }
 
   // TODO - implement Post/cards- creating a card, go to index.js to see how we did the edit user information //
+  addcard({ name, link }) {
+    return fetch(`${this.baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        link,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      Promise.rejct(`Error: ${res.status}`);
+    });
+  }
 
   editUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {

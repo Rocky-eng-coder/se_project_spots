@@ -122,6 +122,8 @@ function getCardElement(data) {
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardLikeBtn = cardElement.querySelector(".card__like-btn");
 
+  console.log(cardElement);
+
   //TODO - Select the delete button
   const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
 
@@ -206,15 +208,20 @@ function handleEditFormSubmit(evt) {
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
 
-  console.log(cardNameInput);
-  console.log(cardLinkInput);
-
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
-  const cardEl = getCardElement(inputValues);
-  cardsList.prepend(cardEl);
-  evt.target.reset(settings);
-  disableButton(cardSubmitBtn, settings);
-  closeModal(cardModal);
+  api
+    .addCard(inputValues)
+    .then((res) => {
+      // renderCard(res, "prepend"); // optional
+
+      const cardEl = getCardElement(res);
+      cardsList.prepend(cardEl);
+      evt.target.reset(settings);
+      disableButton(cardSubmitBtn, settings);
+      closeModal(cardModal);
+    })
+    .catch(console.error)
+    .finally(() => setButtonText(button, false));
 }
 
 // TODO - FINISH avatar submission handler
@@ -236,7 +243,10 @@ function handleDeleteSubmit(evt) {
   evt.preventDefault();
   api
     .deleteCard(selectedCardId)
-    .then(() => {})
+    .then(() => {
+      selectedCard.remove();
+      closeModal(deleteModal);
+    })
     .catch(console.error);
 }
 
