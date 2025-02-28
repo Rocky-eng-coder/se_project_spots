@@ -127,6 +127,8 @@ function getCardElement(data) {
   //TODO - Select the delete button
   const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
 
+  // TODO ... if the card is liked, set the active class on the card, liked cards should be liked when page is refreshed
+
   cardNameEl.textContent = data.name;
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
@@ -152,8 +154,9 @@ function getCardElement(data) {
   //set the listener on the delete button
   // The handler should remove the card from the Dom
 
-  cardDeleteBtn.addEventListener("click", (evt) =>
-    handleDeleteCard(cardElement, data)
+  cardLikeBtn.addEventListener("click", (evt) => handleLike(evt, data._id));
+  cardDeleteBtn.addEventListener("click", () =>
+    handleDeleteCard(cardElement, data._id)
   );
 
   return cardElement;
@@ -162,6 +165,15 @@ function getCardElement(data) {
 // Add code for clicking overlay
 
 const modals = document.querySelectorAll(".modal");
+
+function handleLike(evt, id) {
+  // evt.target.classList.toggle("card__like-button_active");
+  // 1. check whether card is currently liked or not
+  // const isLiked - ???;
+  // 2.call the changeLikeStatus method, passing it the appropriate arguments
+  // 3. handle the responsive (.then and .catch)
+  // 4. in the .then, toggle active class
+}
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -246,6 +258,9 @@ function handleDeleteSubmit(evt) {
     .then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
+      // TODO //
+      // REMOVE THE CARD FROM THE DOM
+      // CLOSE THE MODAL
     })
     .catch(console.error);
 }
