@@ -171,6 +171,62 @@
   padding: 4px 8px;
 }
 
+#delete-modal .modal__container {
+  max-width: 630px;
+}
+
+#delete-modal .modal__form {
+  gap: 20px;
+  width: 332px;
+  height: 1;
+  display: flex;
+  margin-left: 100px;
+}
+
+#delete-modal .modal__title {
+  margin: 0 0 32px;
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1;
+  width: 590px;
+}
+
+#delete-modal .modal__close-btn {
+  position: absolute;
+  top: 1px;
+  right: -50px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  opacity: 40%;
+  border: none;
+  background: none;
+  background-image: url(../images/Bright-white-close-icon.svg);
+  opacity: 1;
+}
+
+#delete-modal .modal__submit-btn {
+  width: 156px;
+  padding: 18px 0;
+  background-color: #ff6565;
+  color: #212121;
+  border: none;
+  border-radius: 8px;
+  font-family: poppins, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#delete-modal .modal__submit-btn-disabled {
+  background-color: #ffffff;
+  border: 1px solid #212121;
+  opacity: 1;
+}
+
 @media screen and (max-width: 627px) {
   .modal {
     padding: 0 10px;

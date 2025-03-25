@@ -5,6 +5,7 @@ import {
   resetValidation,
   disableButton,
 } from "../scripts/validation.js";
+import { setButtonText } from "../utils/helpers.js";
 import Api from "../utils/Api.js";
 
 const initialCards = [
@@ -203,6 +204,12 @@ function handleEscapeKey(event) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
+
+  // change text content to "saving..."
+  const submitBtn = evt.submitter;
+  // submitBtn.textContent = "saving...";
+  setButtonText(submitBtn, true, "Save", "Saving...");
+
   api
     .editUserInfo({
       name: editModalNameInput.value,
@@ -214,8 +221,14 @@ function handleEditFormSubmit(evt) {
       profileDescription.textContent = editModalDescriptionInput.value;
       closeModal(editModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      // TODO Call setButtonText instead
+      submitBtn.textContent = "save";
+    });
 }
+
+// TODO - implement loading text for all other form submissions
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
