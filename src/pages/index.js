@@ -232,6 +232,7 @@ function handleEditFormSubmit(evt) {
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
+  const submitBtn = evt.submitter;
 
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
   api
@@ -260,6 +261,9 @@ function handleAvatarSubmit(evt) {
     .then((data) => {
       console.log(data.avatar);
       // make this work- add the src request
+      if (avatarPreview) {
+        avatarPreview.src = data.avatar;
+      }
     })
     .catch(console.error);
 }
@@ -275,16 +279,19 @@ function handleDeleteSubmit(evt) {
     .then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
-      const cardElement = document.querySelectot(`#card-${selectedCardId}`);
-      if (cardElement) {
-        cardElement.remove();
+      const selectedCardElement = document.querySelectot(
+        `#card-${selectedCardId}`
+      );
+      if (SelectedCardElement) {
+        selectedCardElement.remove();
       }
       // TODO //
       // REMOVE THE CARD FROM THE DOM
       // CLOSE THE MODAL
-      closeModal(deleteModal);
     })
     .catch(console.error);
+  console.error(error);
+  setButtonText(submitBtn, false, "Delete", "Deleting...");
 }
 
 function handleDeleteCard(cardElement, data) {
