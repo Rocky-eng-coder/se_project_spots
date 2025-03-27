@@ -266,14 +266,23 @@ function handleAvatarSubmit(evt) {
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
+
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true, "Delete", "Deleting...");
+
   api
     .deleteCard(selectedCardId)
     .then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
+      const cardElement = document.querySelectot(`#card-${selectedCardId}`);
+      if (cardElement) {
+        cardElement.remove();
+      }
       // TODO //
       // REMOVE THE CARD FROM THE DOM
       // CLOSE THE MODAL
+      closeModal(deleteModal);
     })
     .catch(console.error);
 }

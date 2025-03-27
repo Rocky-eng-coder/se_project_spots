@@ -351,6 +351,12 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin: 20px 0 12px;
+    margin-left: 55px;
+    margin-top: 20px;
+  }
+
+  #delete-modal .modal__close-btn {
+    top: -45px;
+    right: 0;
   }
 }
