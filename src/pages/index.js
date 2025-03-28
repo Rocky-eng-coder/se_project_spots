@@ -168,6 +168,14 @@ function getCardElement(data) {
 const modals = document.querySelectorAll(".modal");
 
 function handleLike(evt, id) {
+  const isLiked = evt.target.classList.contains("card__like-button_active");
+  changeLikeStatus(id, !isLiked)
+    .then(() => {
+      evt.target.classList.toggle("card__like-button_active");
+    })
+    .catch((error) => {
+      console.error(`Error changing like status: ${error}`);
+    });
   // evt.target.classList.toggle("card__like-button_active");
   // 1. check whether card is currently liked or not
   // const isLiked - ???;
@@ -247,7 +255,7 @@ function handleAddCardSubmit(evt) {
       closeModal(cardModal);
     })
     .catch(console.error)
-    .finally(() => setButtonText(button, false));
+    .finally(() => setButtonText(submitBtn, false));
 }
 
 // TODO - FINISH avatar submission handler
@@ -279,24 +287,25 @@ function handleDeleteSubmit(evt) {
     .then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
-      const selectedCardElement = document.querySelectot(
+      const selectedCardElement = document.querySelector(
         `#card-${selectedCardId}`
       );
-      if (SelectedCardElement) {
+      if (selectedCardElement) {
         selectedCardElement.remove();
       }
       // TODO //
       // REMOVE THE CARD FROM THE DOM
       // CLOSE THE MODAL
     })
-    .catch(console.error);
-  console.error(error);
-  setButtonText(submitBtn, false, "Delete", "Deleting...");
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false, "Delete", "Deleting...");
+    });
 }
 
-function handleDeleteCard(cardElement, data) {
+function handleDeleteCard(cardElement, id) {
   selectedCard = cardElement;
-  selectedCardId = data._id;
+  selectedCardId = id;
   openModal(deleteModal);
 }
 
