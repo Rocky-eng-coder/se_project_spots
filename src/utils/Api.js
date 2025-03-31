@@ -62,6 +62,9 @@ class Api {
       headers: this._headers,
     }).then((res) => {
       if (!res.ok) {
+        console.error(
+          `Failed to delete card with ID: ${cardId}, Status: ${res.status}`
+        );
         return Promise.reject(`Error: ${res.status}`);
       }
       return res.json();

@@ -95,6 +95,7 @@ const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 // Delete form Elements
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__form");
+const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
 
 // select the modal
 const previewModal = document.querySelector("#preview-modal");
@@ -197,6 +198,9 @@ function changeLikeStatus(evt, id) {
 }
 
 function openModal(modal) {
+  const openModals = document.querySelectorAll(".modal_opened");
+  openModals.forEach((modal) => closeModal(modal));
+
   modal.classList.add("modal_opened");
   modal.addEventListener("click", handleOverlayClick);
   document.addEventListener("keydown", handleEscapeKey);
@@ -355,6 +359,9 @@ function handleDeleteSubmit(evt) {
 function handleDeleteCard(cardElement, id) {
   selectedCard = cardElement;
   selectedCardId = id;
+
+  const openModals = document.querySelectorAll(".modal_opened");
+  openModals.forEach((modal) => closeModal(modal));
   openModal(deleteModal);
 }
 
@@ -379,6 +386,10 @@ profileAddButton.addEventListener("click", () => {
 
 cardModalCloseBtn.addEventListener("click", () => {
   closeModal(cardModal);
+});
+
+deleteModalCloseBtn.addEventListener("click", () => {
+  closeModal(deleteModal);
 });
 
 // TODO - select avatar modal button at the top of the page
