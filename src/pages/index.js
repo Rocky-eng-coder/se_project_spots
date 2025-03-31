@@ -155,7 +155,9 @@ function getCardElement(data) {
   //set the listener on the delete button
   // The handler should remove the card from the Dom
 
-  cardLikeBtn.addEventListener("click", (evt) => handleLike(evt, data._id));
+  cardLikeBtn.addEventListener("click", (evt) =>
+    changeLikeStatus(evt, data._id)
+  );
   cardDeleteBtn.addEventListener("click", () =>
     handleDeleteCard(cardElement, data._id)
   );
@@ -167,14 +169,14 @@ function getCardElement(data) {
 
 const modals = document.querySelectorAll(".modal");
 
-function handleLike(evt, id) {
-  const isLiked = evt.target.classList.contains("card__like-button_active");
-  changeLikeStatus(id, !isLiked)
-    .then(() => {
-      evt.target.classList.toggle("card__like-button_active");
+function changeLikeStatus(evt, id) {
+  return api
+    .changeLikeStatus(id, changeLikeStatus)
+    .then((data) => {
+      console.log(data);
     })
     .catch((error) => {
-      console.error(`Error changing like status: ${error}`);
+      console.error("Error updating like status:", error);
     });
   // evt.target.classList.toggle("card__like-button_active");
   // 1. check whether card is currently liked or not
