@@ -134,6 +134,10 @@ function getCardElement(data) {
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
 
+  if (data.liked) {
+    cardLikeBtn.classList.add("card__like-btn_liked");
+  }
+
   cardLikeBtn.addEventListener("click", () => {
     cardLikeBtn.classList.toggle("card__like-btn_liked");
   });
@@ -170,10 +174,16 @@ function getCardElement(data) {
 const modals = document.querySelectorAll(".modal");
 
 function changeLikeStatus(evt, id) {
+  const cardLikeBtn = evt.target;
+  const isLiked = cardLikeBtn.classList.contains("card__like-btn_liked");
+  const api = new Api();
+  api.changeLikeStatus(id, isLiked);
+
   return api
-    .changeLikeStatus(id, changeLikeStatus)
+    .changeLikeStatus(id, isLiked)
     .then((data) => {
       console.log(data);
+      // Optionally toggle button class here
     })
     .catch((error) => {
       console.error("Error updating like status:", error);
@@ -244,6 +254,8 @@ function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const submitBtn = evt.submitter;
 
+  setButtonText(submitBtn, true, "save", "saving...");
+
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
   api
     .addCard(inputValues)
@@ -257,26 +269,61 @@ function handleAddCardSubmit(evt) {
       closeModal(cardModal);
     })
     .catch(console.error)
-    .finally(() => setButtonText(submitBtn, false));
+    .finally(() => {
+      setButtonText(submitBtn, false, "save", "saving...");
+    });
 }
 
 // TODO - FINISH avatar submission handler
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
 
+  const newAvatarUrl = avatarInput.value;
+
   // TODO - prevent behavior
   // TODO - Call api.editAvatarUserInfo
+
+  if (!newAvatarUrl) {
+    return;
+  }
+
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true, "Save", "Saving...");
+
   api
-    .editAvatarInfo(avatarInput.value)
+    .editAvatarInfo(newAvatarUrl)
     .then((data) => {
       console.log(data.avatar);
       // make this work- add the src request
-      if (avatarPreview) {
-        avatarPreview.src = data.avatar;
+      const profileAvatar = document.querySelector(".profile__avatar");
+      if (profileAvatar) {
+        profileAvatar.src = data.avatar;
       }
+      closeModal(avatarModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false, "Save", "saving...");
+    });
 }
+
+api
+  .getAppInfo()
+  .then(([cards, userInfo]) => {
+    cards.forEach((item) => {
+      const cardEl = getCardElement(item);
+      cardsList.append(cardEl);
+    });
+
+    const profileAvatar = document.querySelector(".profile__avatar");
+    if (profileAvatar) {
+      profileAvatar.src = userInfo.avatar;
+    }
+
+    profileName.textContent = userInfo.name;
+    profileDescription.textContent = userInfo.about;
+  })
+  .catch(console.error);
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();

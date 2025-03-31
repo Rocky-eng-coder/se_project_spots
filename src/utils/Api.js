@@ -1,5 +1,5 @@
 class Api {
-  constructor({ baseUrl, headers }) {
+  constructor({ baseUrl = "", headers = {} } = {}) {
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
@@ -18,7 +18,14 @@ class Api {
 
   getAppInfo() {
     // TODO Call getuserinfo in this array
-    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
+    return Promise.all([
+      fetch(`${this._baseUrl}/cards`, {
+        headers: this._headers,
+      }).then((res) => res.json()),
+      fetch(`${this._baseUrl}/users/me`, {
+        headers: this._headers,
+      }).then((res) => res.json()),
+    ]);
   }
 
   getInitialCards() {
@@ -105,6 +112,7 @@ class Api {
       }
       return Promise.reject(`Error: ${res.status}`);
     });
+
     // handle the response //
   }
 }
