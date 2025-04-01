@@ -81,7 +81,7 @@ const editModalDescriptionInput = editModal.querySelector(
 const cardModal = document.querySelector("#add-card-modal");
 const cardForm = cardModal.querySelector(".modal__form");
 const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn");
-const cardCancelBtn = cardModal.querySelector(".modal__submit-btn-disabled");
+const cardCancelBtn = cardModal.querySelector(".modal__cancel-btn");
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
@@ -208,6 +208,7 @@ function openModal(modal) {
   document.addEventListener("keydown", handleEscapeKey);
 }
 function closeModal(modal) {
+  console.log("closing modal...");
   modal.classList.remove("modal_opened");
   modal.removeEventListener("click", handleOverlayClick);
   document.removeEventListener("keydown", handleEscapeKey);

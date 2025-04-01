@@ -58,6 +58,20 @@
   cursor: pointer;
 }
 
+.modal__cancel-btn {
+  width: 156px;
+  padding: 18px 0;
+  background-color: #212121;
+  color: #fcf5e5;
+  border: none;
+  border-radius: 8px;
+  font-family: poppins, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+}
+
 .modal__title {
   margin: 0 0 32px;
   font-family: Poppins;
@@ -126,12 +140,6 @@
 .modal__submit-btn:hover {
   background-color: #212121;
   opacity: 0.8;
-}
-
-.modal__submit-btn-disabled {
-  background-color: rgba(33, 33, 33, 1);
-  opacity: 0.5;
-  color: rgba(252, 245, 229, 1);
 }
 
 .modal__content_type_preview {
