@@ -123,8 +123,12 @@
     padding-top: 20px;
   }
 
+  .profile__avatar-container {
+    position: relative;
+  }
+
   .profile__avatar-btn {
-    visibility: visible;
+    visibility: hidden;
   }
 
   .profile__avatar {
@@ -132,6 +136,7 @@
     height: 80px;
     width: 80px;
   }
+
   .profile__name {
     font-size: 20px;
     margin: 0 0 6px;

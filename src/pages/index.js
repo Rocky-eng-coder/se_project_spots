@@ -81,6 +81,7 @@ const editModalDescriptionInput = editModal.querySelector(
 const cardModal = document.querySelector("#add-card-modal");
 const cardForm = cardModal.querySelector(".modal__form");
 const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn");
+const cardCancelBtn = cardModal.querySelector(".modal__submit-btn-disabled");
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
@@ -178,12 +179,13 @@ function changeLikeStatus(evt, id) {
   const cardLikeBtn = evt.target;
   const isLiked = cardLikeBtn.classList.contains("card__like-btn_liked");
   const api = new Api();
-  api.changeLikeStatus(id, isLiked);
 
-  return api
+  api
     .changeLikeStatus(id, isLiked)
+
     .then((data) => {
-      console.log(data);
+      console.log("Like status updated:", data);
+      cardLikeBtn.classList.toggle("card__like-btn-liked");
       // Optionally toggle button class here
     })
     .catch((error) => {
@@ -389,6 +391,10 @@ cardModalCloseBtn.addEventListener("click", () => {
 });
 
 deleteModalCloseBtn.addEventListener("click", () => {
+  closeModal(deleteModal);
+});
+
+cardCancelBtn.addEventListener("click", () => {
   closeModal(deleteModal);
 });
 

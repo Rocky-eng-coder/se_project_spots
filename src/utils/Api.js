@@ -1,5 +1,5 @@
 class Api {
-  constructor({ baseUrl = "", headers = {} } = {}) {
+  constructor({ baseUrl, headers = {} } = {}) {
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
