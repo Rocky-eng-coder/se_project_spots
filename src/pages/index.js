@@ -123,6 +123,7 @@ function getCardElement(data) {
 
   const cardNameEl = cardElement.querySelector(".card__title");
   const cardImageEl = cardElement.querySelector(".card__image");
+
   const cardLikeBtn = cardElement.querySelector(".card__like-btn");
 
   console.log(cardElement);
@@ -136,7 +137,7 @@ function getCardElement(data) {
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
 
-  if (data.liked) {
+  if (data.isLiked) {
     cardLikeBtn.classList.add("card__like-btn_liked");
   }
 
@@ -178,25 +179,16 @@ const modals = document.querySelectorAll(".modal");
 function changeLikeStatus(evt, id) {
   const cardLikeBtn = evt.target;
   const isLiked = cardLikeBtn.classList.contains("card__like-btn_liked");
-  const api = new Api();
 
   api
     .changeLikeStatus(id, isLiked)
-
-    .then((data) => {
-      console.log("Like status updated:", data);
+    .then(() => {
       cardLikeBtn.classList.toggle("card__like-btn-liked");
       // Optionally toggle button class here
     })
     .catch((error) => {
       console.error("Error updating like status:", error);
     });
-  // evt.target.classList.toggle("card__like-button_active");
-  // 1. check whether card is currently liked or not
-  // const isLiked - ???;
-  // 2.call the changeLikeStatus method, passing it the appropriate arguments
-  // 3. handle the responsive (.then and .catch)
-  // 4. in the .then, toggle active class
 }
 
 function openModal(modal) {
