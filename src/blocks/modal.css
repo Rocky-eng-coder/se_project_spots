@@ -61,8 +61,8 @@
 .modal__cancel-btn {
   width: 156px;
   padding: 18px 0;
-  background-color: #212121;
-  color: #fcf5e5;
+  background-color: #ffffff;
+  color: #212121;
   border: none;
   border-radius: 8px;
   font-family: poppins, Arial, Helvetica, sans-serif;
@@ -70,6 +70,12 @@
   font-weight: 500;
   line-height: 1;
   cursor: pointer;
+  border: 1px solid #212121;
+}
+
+.modal__cancel-btn:hover {
+  background-color: #212121;
+  color: #ffffff;
 }
 
 .modal__title {

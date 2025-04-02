@@ -81,7 +81,7 @@ const editModalDescriptionInput = editModal.querySelector(
 const cardModal = document.querySelector("#add-card-modal");
 const cardForm = cardModal.querySelector(".modal__form");
 const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn");
-const cardCancelBtn = cardModal.querySelector(".modal__cancel-btn");
+
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
@@ -97,6 +97,7 @@ const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__form");
 const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
+const cardCancelBtn = deleteModal.querySelector(".modal__cancel-btn");
 
 // select the modal
 const previewModal = document.querySelector("#preview-modal");
@@ -308,24 +309,6 @@ function handleAvatarSubmit(evt) {
     });
 }
 
-api
-  .getAppInfo()
-  .then(([cards, userInfo]) => {
-    cards.forEach((item) => {
-      const cardEl = getCardElement(item);
-      cardsList.append(cardEl);
-    });
-
-    const profileAvatar = document.querySelector(".profile__avatar");
-    if (profileAvatar) {
-      profileAvatar.src = userInfo.avatar;
-    }
-
-    profileName.textContent = userInfo.name;
-    profileDescription.textContent = userInfo.about;
-  })
-  .catch(console.error);
-
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
 
@@ -383,6 +366,10 @@ profileAddButton.addEventListener("click", () => {
 
 cardModalCloseBtn.addEventListener("click", () => {
   closeModal(cardModal);
+});
+
+cardCancelBtn.addEventListener("click", () => {
+  closeModal(deleteModal);
 });
 
 deleteModalCloseBtn.addEventListener("click", () => {
