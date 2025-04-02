@@ -395,10 +395,6 @@ deleteModalCloseBtn.addEventListener("click", () => {
   closeModal(deleteModal);
 });
 
-cardCancelBtn.addEventListener("click", () => {
-  closeModal(deleteModal);
-});
-
 // TODO - select avatar modal button at the top of the page
 avatarModalBtn.addEventListener("click", () => {
   openModal(avatarModal);
