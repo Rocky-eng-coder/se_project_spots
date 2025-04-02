@@ -183,7 +183,7 @@ function changeLikeStatus(evt, id) {
   const isLiked = cardLikeBtn.classList.contains("card__like-btn_liked");
 
   api
-    .changeLikeStatus(id, isLiked)
+    .changeLikeStatus(id, !isLiked)
     .then(() => {
       cardLikeBtn.classList.toggle("card__like-btn-liked");
       // Optionally toggle button class here
