@@ -139,6 +139,8 @@ function getCardElement(data) {
 
   if (data.isLiked) {
     cardLikeBtn.classList.add("card__like-btn_liked");
+  } else {
+    cardLikeBtn.classList.remove("card__like-btn_liked");
   }
 
   cardLikeBtn.addEventListener("click", () => {
