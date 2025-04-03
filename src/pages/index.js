@@ -192,7 +192,7 @@ function changeLikeStatus(evt, id) {
 
   api
     .changeLikeStatus(id, !isLiked)
-    .then(() => {
+    .then((data) => {
       cardLikeBtn.classList.toggle("card__like-btn-liked");
       // Optionally toggle button class here
     })
@@ -386,6 +386,10 @@ deleteModalCloseBtn.addEventListener("click", () => {
 // TODO - select avatar modal button at the top of the page
 avatarModalBtn.addEventListener("click", () => {
   openModal(avatarModal);
+});
+
+avatarModalCloseBtn.addEventListener("click", () => {
+  closeModal(avatarModal);
 });
 
 avatarForm.addEventListener("submit", handleAvatarSubmit);
