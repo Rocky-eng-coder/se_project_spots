@@ -50,7 +50,14 @@ const api = new Api({
 // Destructure the second item in the callback of the .then()
 api
   .getAppInfo()
-  .then(([cards]) => {
+  .then(([cards, userInfo]) => {
+    profileName.textContent = userInfo.name;
+    profileDescription.textContent = userInfo.about;
+    const profileAvatar = document.querySelector(".profile__avatar");
+    if (profileAvatar) {
+      profileAvatar.src = userInfo.avatar;
+    }
+
     cards.forEach((item) => {
       const cardEl = getCardElement(item);
       cardsList.append(cardEl);
@@ -239,14 +246,14 @@ function handleEditFormSubmit(evt) {
     })
     .then((data) => {
       // Todo - Use data argument instead of the input values
-      profileName.textContent = editModalNameInput.value;
-      profileDescription.textContent = editModalDescriptionInput.value;
+      profileName.textContent = data.name;
+      profileDescription.textContent = data.about;
       closeModal(editModal);
     })
     .catch(console.error)
     .finally(() => {
       // TODO Call setButtonText instead
-      submitBtn.textContent = "save";
+      setButtonText(submitBtn, false, "Save", "Saving...");
     });
 }
 
