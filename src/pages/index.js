@@ -151,10 +151,6 @@ function getCardElement(data) {
     cardLikeBtn.classList.remove("card__like-btn_liked");
   }
 
-  cardLikeBtn.addEventListener("click", () => {
-    cardLikeBtn.classList.toggle("card__like-btn_liked");
-  });
-
   cardImageEl.addEventListener("click", () => {
     openModal(previewModal);
     previewModalImageEl.alt = data.name;
@@ -193,7 +189,11 @@ function changeLikeStatus(evt, id) {
   api
     .changeLikeStatus(id, !isLiked)
     .then((data) => {
-      cardLikeBtn.classList.toggle("card__like-btn-liked");
+      if (data && data.isLiked !== undefined) {
+        cardLikeBtn.classList.toggle("card__like-btn_liked", data.isLiked);
+      } else {
+        console.error("Error: Server response did not include 'isLiked'.");
+      }
       // Optionally toggle button class here
     })
     .catch((error) => {
@@ -202,9 +202,6 @@ function changeLikeStatus(evt, id) {
 }
 
 function openModal(modal) {
-  const openModals = document.querySelectorAll(".modal_opened");
-  openModals.forEach((modal) => closeModal(modal));
-
   modal.classList.add("modal_opened");
   modal.addEventListener("click", handleOverlayClick);
   document.addEventListener("keydown", handleEscapeKey);
@@ -327,15 +324,6 @@ function handleDeleteSubmit(evt) {
     .then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
-      const selectedCardElement = document.querySelector(
-        `#card-${selectedCardId}`
-      );
-      if (selectedCardElement) {
-        selectedCardElement.remove();
-      }
-      // TODO //
-      // REMOVE THE CARD FROM THE DOM
-      // CLOSE THE MODAL
     })
     .catch(console.error)
     .finally(() => {
