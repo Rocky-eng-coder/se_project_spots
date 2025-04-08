@@ -187,13 +187,9 @@ function changeLikeStatus(evt, id) {
   const isLiked = cardLikeBtn.classList.contains("card__like-btn_liked");
 
   api
-    .changeLikeStatus(id, !isLiked)
+    .changeLikeStatus(id, isLiked)
     .then((data) => {
-      if (data && data.isLiked !== undefined) {
-        cardLikeBtn.classList.toggle("card__like-btn_liked", data.isLiked);
-      } else {
-        console.error("Error: Server response did not include 'isLiked'.");
-      }
+      cardLikeBtn.classList.toggle("card__like-btn_liked");
       // Optionally toggle button class here
     })
     .catch((error) => {
