@@ -11,7 +11,6 @@ class Api {
     return Promise.reject(`Error: ${res.status}`);
   }
 
-  // TODO create another method called get user info
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
@@ -19,7 +18,6 @@ class Api {
   }
 
   getAppInfo() {
-    // TODO Call getuserinfo in this array
     return Promise.all([
       fetch(`${this._baseUrl}/cards`, {
         headers: this._headers,
@@ -34,7 +32,6 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  // TODO - implement Post/cards- creating a card, go to index.js to see how we did the edit user information //
   addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",

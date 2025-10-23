@@ -47,7 +47,6 @@ const api = new Api({
   },
 });
 
-// Destructure the second item in the callback of the .then()
 api
   .getAppInfo()
   .then(([cards, userInfo]) => {
@@ -62,21 +61,15 @@ api
       const cardEl = getCardElement(item);
       cardsList.append(cardEl);
     });
-
-    //Handle the user's information
-    // - set the src of the avatar image
-    // - set the textcontent of both the text elements
   })
   .catch(console.error);
 
-//Profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const profileAddButton = document.querySelector(".profile__add-btn");
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 
-//form Elements
 const editModal = document.querySelector("#edit-modal");
 const editFormElement = editModal.querySelector(".modal__form");
 const editModalCloseBtn = editModal.querySelector(".modal__close-btn");
@@ -93,22 +86,18 @@ const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 
-// Avatar form elements
 const avatarModal = document.querySelector("#avatar-modal");
 const avatarForm = avatarModal.querySelector(".modal__form");
 const avatarSubmitBtn = avatarModal.querySelector(".modal__submit-btn");
 const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
-// Delete form Elements
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__form");
 const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
 const cardCancelBtn = deleteModal.querySelector(".modal__cancel-btn");
 
-// select the modal
 const previewModal = document.querySelector("#preview-modal");
-// select other necessary elements// Card related elements
 const previewModalImageEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 const previewModalDeleteBtn = previewModal.querySelector(
@@ -116,8 +105,6 @@ const previewModalDeleteBtn = previewModal.querySelector(
 );
 
 const previewModalErrorMsg = previewModal.querySelector(".modal__error");
-
-// CARD RELATED ELEMENTS //
 
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
@@ -136,10 +123,7 @@ function getCardElement(data) {
 
   console.log(cardElement);
 
-  //TODO - Select the delete button
   const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
-
-  // TODO ... if the card is liked, set the active class on the card, liked cards should be liked when page is refreshed
 
   cardNameEl.textContent = data.name;
   cardImageEl.src = data.link;
@@ -162,12 +146,6 @@ function getCardElement(data) {
     closeModal(previewModal);
   });
 
-  // add the src
-  // add the text content
-
-  //set the listener on the delete button
-  // The handler should remove the card from the Dom
-
   cardLikeBtn.addEventListener("click", (evt) =>
     changeLikeStatus(evt, data._id)
   );
@@ -177,8 +155,6 @@ function getCardElement(data) {
 
   return cardElement;
 }
-
-// Add code for clicking overlay
 
 const modals = document.querySelectorAll(".modal");
 
@@ -190,7 +166,6 @@ function changeLikeStatus(evt, id) {
     .changeLikeStatus(id, isLiked)
     .then((data) => {
       cardLikeBtn.classList.toggle("card__like-btn_liked");
-      // Optionally toggle button class here
     })
     .catch((error) => {
       console.error("Error updating like status:", error);
@@ -209,8 +184,6 @@ function closeModal(modal) {
   document.removeEventListener("keydown", handleEscapeKey);
 }
 
-// Add code for leaving modal using ESC key
-
 function handleOverlayClick(evt) {
   if (evt.target.classList.contains("modal_opened")) {
     closeModal(evt.target);
@@ -227,9 +200,8 @@ function handleEscapeKey(event) {
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
 
-  // change text content to "saving..."
   const submitBtn = evt.submitter;
-  // submitBtn.textContent = "saving...";
+
   setButtonText(submitBtn, true, "Save", "Saving...");
 
   api
@@ -238,19 +210,15 @@ function handleEditFormSubmit(evt) {
       about: editModalDescriptionInput.value,
     })
     .then((data) => {
-      // Todo - Use data argument instead of the input values
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
       closeModal(editModal);
     })
     .catch(console.error)
     .finally(() => {
-      // TODO Call setButtonText instead
       setButtonText(submitBtn, false, "Save", "Saving...");
     });
 }
-
-// TODO - implement loading text for all other form submissions
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
@@ -262,8 +230,6 @@ function handleAddCardSubmit(evt) {
   api
     .addCard(inputValues)
     .then((res) => {
-      // renderCard(res, "prepend"); // optional
-
       const cardEl = getCardElement(res);
       cardsList.prepend(cardEl);
       evt.target.reset(settings);
@@ -276,14 +242,10 @@ function handleAddCardSubmit(evt) {
     });
 }
 
-// TODO - FINISH avatar submission handler
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
 
   const newAvatarUrl = avatarInput.value;
-
-  // TODO - prevent behavior
-  // TODO - Call api.editAvatarUserInfo
 
   if (!newAvatarUrl) {
     return;
@@ -296,7 +258,7 @@ function handleAvatarSubmit(evt) {
     .editAvatarInfo(newAvatarUrl)
     .then((data) => {
       console.log(data.avatar);
-      // make this work- add the src request
+
       const profileAvatar = document.querySelector(".profile__avatar");
       if (profileAvatar) {
         profileAvatar.src = data.avatar;
@@ -367,7 +329,6 @@ deleteModalCloseBtn.addEventListener("click", () => {
   closeModal(deleteModal);
 });
 
-// TODO - select avatar modal button at the top of the page
 avatarModalBtn.addEventListener("click", () => {
   openModal(avatarModal);
 });
@@ -382,10 +343,5 @@ editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
-
-// for (let i = 0; i < initialCards.length; i++) {
-//  const cardElement = getCardElement(initialCards[i]);
-// cardsList.prepend(cardElement);
-//}
 
 enableValidation(settings);

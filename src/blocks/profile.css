@@ -16,8 +16,6 @@
   align-items: flex-end;
   justify-content: center;
   visibility: hidden;
-
-  /* TODO - finish avatar button styles */
 }
 
 .profile__avatar-container:hover .profile__avatar-btn {
