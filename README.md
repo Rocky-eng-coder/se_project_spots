@@ -8,7 +8,7 @@
 
 **Intro**
 
-This is a responsive layout project using the design application Figma to create a look for our elements that will be compatible on multiple devices regardless of size.
+This is a responsive layout project using the design application Figma to create a look for our elements that will be compatible on multiple devices regardless of size. Formulated functionality of elements such as adding, deleting, editing, and liking using JavaScript. Connected project to a database using an API; this allows user changes to the cards or the profile info to persist when the page reloads.
 
 ## Tech Stack
 
