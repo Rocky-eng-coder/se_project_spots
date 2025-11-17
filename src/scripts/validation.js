@@ -38,15 +38,12 @@ const toggleButtonState = (inputList, buttonEl, config) => {
     disableButton(buttonEl, config);
   } else {
     buttonEl.disabled = false;
-    //TODO - remove the disabled class
     buttonEl.classList.remove(config.inactiveButtonClass);
   }
 };
 
 export const disableButton = (buttonEl, config) => {
   buttonEl.disabled = true;
-  //TODO - Add a modifier class to the buttonEl to make it grey
-  //TODO - Don't forget the CSS
   buttonEl.classList.add(config.inactiveButtonClass);
 };
 
@@ -55,8 +52,6 @@ export const resetValidation = (formEl, inputList, config) => {
     hideInputError(formEl, input, config);
   });
 };
-
-//TODO - use the settings object in all functions instead of hard-coded strings
 
 const setEventListeners = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
